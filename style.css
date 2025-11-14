@@ -9,6 +9,12 @@ body {
   line-height: 1.6;
 }
 
+/* Make all headings chalk-style */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Patrick Hand', sans-serif !important;
+  color: #3e2f24;
+}
+
 /* ---------------------------------------------------
    HEADER
 --------------------------------------------------- */
@@ -76,7 +82,6 @@ nav.sticky {
   color: #fff;
 }
 
-/* underline effect */
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -92,7 +97,6 @@ nav.sticky {
   width: 100%;
 }
 
-/* Dropdown menu */
 .dropdown { position: relative; }
 
 .dropdown-content {
@@ -139,7 +143,6 @@ nav.sticky {
   to   {opacity: 1;}
 }
 
-/* Fix for small sub-banners */
 .sub-banner img {
   width: 100%;
   max-height: 120px;
@@ -160,18 +163,12 @@ main.content {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-h1, h2, h3, h4 {
-  font-family: 'Great Vibes', cursive;
-  color: #3e2f24;
-}
-
 .intro {
   font-size: 1.1rem;
   color: #5c4c44;
   margin-bottom: 2rem;
 }
 
-/* alternating sections */
 section:nth-of-type(even),
 .product-grid:nth-of-type(even) {
   background-color: rgba(243,231,220,0.5);
@@ -201,7 +198,6 @@ section:nth-of-type(even),
   gap: 1.5rem;
 }
 
-/* Cards */
 .product-card,
 .product-box {
   background-color: #f3e7dc;
@@ -253,7 +249,7 @@ section:nth-of-type(even),
 }
 
 /* ---------------------------------------------------
-   BUTTONS (global)
+   BUTTONS
 --------------------------------------------------- */
 button,
 .checkout-btn,
@@ -265,7 +261,6 @@ button,
   transition: 0.3s ease;
 }
 
-/* Base Boho Button */
 button,
 .checkout-btn {
   background-color: #a7b59f;
@@ -281,7 +276,6 @@ button:hover,
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* Add to Cart Button */
 .add-to-cart-btn {
   display: block;
   width: fit-content;
@@ -318,9 +312,7 @@ button:hover,
   object-position: 50% 32%;
 }
 
-.about-photo:hover {
-  transform: scale(1.05);
-}
+.about-photo:hover { transform: scale(1.05); }
 
 .caption {
   font-size: 0.95rem;
@@ -329,7 +321,7 @@ button:hover,
 }
 
 /* ---------------------------------------------------
-   THEME TITLES / ICONS
+   THEME TITLES
 --------------------------------------------------- */
 .theme-title {
   display: inline-flex;
@@ -340,10 +332,9 @@ button:hover,
 }
 
 .theme-title span {
-  font-family: 'Great Vibes', cursive !important;
+  font-family: 'Patrick Hand', sans-serif !important;
   font-size: 1.9rem;
   color: #5b4636;
-  letter-spacing: 0.5px;
 }
 
 .theme-icon {
@@ -361,7 +352,6 @@ button:hover,
   opacity: 1;
 }
 
-/* prevent dragging or copying icons */
 .theme-icon,
 .theme-icon-large {
   pointer-events: none;
@@ -369,7 +359,7 @@ button:hover,
 }
 
 /* ---------------------------------------------------
-   THEME PREVIEW PAGES
+   THEME PREVIEW
 --------------------------------------------------- */
 .theme-preview {
   max-width: 700px;
@@ -379,7 +369,7 @@ button:hover,
 }
 
 .theme-heading {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Patrick Hand', sans-serif !important;
   font-size: 3rem;
   display: inline-flex;
   align-items: center;
@@ -400,10 +390,8 @@ button:hover,
   line-height: 1.8;
 }
 
-/* Includes list */
 .includes-heading {
   font-size: 1.5rem;
-  font-family: 'Playfair Display', serif;
   margin-bottom: 15px;
   color: #5b4636;
 }
@@ -428,7 +416,7 @@ button:hover,
 }
 
 /* ---------------------------------------------------
-   FREEBIES PAGE
+   FREEBIES
 --------------------------------------------------- */
 .freebie-box {
   background: #f3e7dc;
@@ -440,7 +428,7 @@ button:hover,
 }
 
 .freebie-title {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Patrick Hand', sans-serif !important;
   font-size: 2rem;
   color: #3e2f24;
 }
