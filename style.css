@@ -572,3 +572,34 @@ footer {
     z-index: 5;
   }
 }
+/* ---------------------------------------------------
+   COMING SOON BANNER
+--------------------------------------------------- */
+.coming-soon-banner {
+  background: rgba(243, 231, 220, 0.9);
+  border-left: 6px solid #a7b59f;
+  padding: 1.5rem 1.8rem;
+  margin: 2rem 0;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.coming-soon-banner h2 {
+  margin: 0;
+  font-family: 'Patrick Hand', sans-serif !important;
+  font-size: 1.8rem;
+  color: #5b4636;
+}
+
+.coming-soon-banner p {
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  color: #6f5a4a;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
