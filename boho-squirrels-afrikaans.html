@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boho Eekhorings – Afrikaans</title>
+  <title>Boho Eekhoringtjies – Afrikaans</title>
+
+  <link rel="icon" type="image/png" href="bb favicon.png">
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
   <script src="cart.js" defer></script>
 </head>
 
@@ -13,70 +16,81 @@
 <header>
   <h1 class="logo">Boho Blackboard</h1>
   <div class="swoosh"></div>
+
+  <nav class="sticky">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+
+      <li class="dropdown">
+        <a href="resources.html" class="active">Resources ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="pdf-products.html">PDF Products</a></li>
+          <li><a href="classroom-themes.html" class="active">Classroom Themes</a></li>
+          <li><a href="freebies.html">Freebies</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Legal ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="downloads.html">Digital Delivery</a></li>
+        </ul>
+      </li>
+
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+    </ul>
+  </nav>
 </header>
 
-<nav class="sticky">
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a class="active" href="classroom-themes.html">Themes</a></li>
-    <li class="dropdown">
-      <a href="#">Legal</a>
-      <ul class="dropdown-content">
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms & Conditions</a></li>
-      </ul>
-    </li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
-  </ul>
-</nav>
+<section class="sub-banner">
+  <img src="banner.png" alt="Boho Eekhoringtjies Banner">
+</section>
+
 <main class="content theme-preview">
 
   <h2 class="theme-heading">
     <img src="Squirrel.png" class="theme-icon-large" alt="Eekhoring Ikon">
-    Boho Eekhorings
+    Boho Eekhoringtjies
   </h2>
-  
+
   <p class="theme-description">
-    ’n Lewendige bosveldtema vol nuuskierige klein eekhorings en sagte aardkleure.
-    Voeg speelsheid, verbeelding en avontuur by jou klaskamer.
+    ’n Speelse woudtema vol nuuskierige eekhoringtjies en sagte aardkleure.
+    Dit bring avontuur, energie en natuur in jou klaskamer.
   </p>
 
 </main>
 
 <main class="content">
 
-  <div class="theme-preview">
-    <h1 class="theme-heading">Boho Eekhorings Klaskamer Tema</h1>
+  <h2 class="includes-heading">Wat is in die pak?</h2>
 
-    <h2 class="includes-heading">Wat is in die pak?</h2>
+  <ul class="includes-list">
+    <li>Welkom Deur Plakkaat</li>
+    <li>Maande van die Jaar</li>
+    <li>Dae van die Week</li>
+    <li>100-kaart</li>
+    <li>Weerkaart</li>
+    <li>Alfabet Plakkate</li>
+    <li>Welkom Vlaggies</li>
+    <li>Vorms</li>
+    <li>Kleure</li>
+    <li>Naamkaartjies</li>
+    <li>Verjaarsdag Plakkate</li>
+    <li>Nommer Vlaggies</li>
+    <li>Alfabet Vlaggies</li>
+  </ul>
 
-    <ul class="includes-list">
-      <li>Welkom Deur Plakkaat</li>
-      <li>Maande van die Jaar</li>
-      <li>Dae van die Week</li>
-      <li>100-kaart</li>
-      <li>Weerkaart</li>
-      <li>Alfabet Plakkate</li>
-      <li>Welkom Vlaggies</li>
-      <li>Vorms</li>
-      <li>Kleure</li>
-      <li>Naamkaartjies</li>
-      <li>Verjaarsdag Plakkate</li>
-      <li>Nommer Vlaggies</li>
-      <li>Alfabet Vlaggies</li>
-    </ul>
+  <p class="price">R100</p>
 
-    <p class="price">R100</p>
-
-    <a class="add-to-cart"
-       data-product="Boho Eekhorings"
-       data-price="100"
-       data-image="Squirrel.png">
-       Voeg by mandjie
-    </a>
-
-  </div>
+  <button class="add-to-cart-btn"
+          onclick="addToCart('Boho Eekhoringtjies Tema (Afrikaans)', 100, 'Squirrel.png')">
+    Voeg by mandjie — R100
+  </button>
 
 </main>
 
