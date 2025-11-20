@@ -122,7 +122,26 @@
           onclick="addToCart('Boho Owls Theme (English)', 100, 'Owl.png')">
     Add to Cart — R100
   </button>
+<form action="https://payment.payfast.io/eng/process" method="post" style="margin-top: 20px;">
+    <input type="hidden" name="cmd" value="_paynow">
+    <input type="hidden" name="receiver" value="32490751">
 
+    <!-- Redirects -->
+    <input type="hidden" name="return_url" value="https://bohoblackboard.github.io/boho/thankyou_owls.html">
+    <input type="hidden" name="cancel_url" value="https://bohoblackboard.github.io/boho/Cancel.html">
+
+    <!-- Product data -->
+    <input type="hidden" name="amount" value="100.00">
+    <input type="hidden" name="item_name" value="Boho Owls English">
+    <input type="hidden" name="item_description" value="Digital classroom theme download – Boho Owls (English)">
+
+    <!-- Pay button -->
+    <input type="image"
+           src="https://my.payfast.io/images/buttons/PayNow/Light-Large-PayNow.png"
+           alt="Pay Now"
+           title="Pay Now with PayFast"
+           style="margin-top: 10px;">
+</form>
 </main>
 
 <footer>
