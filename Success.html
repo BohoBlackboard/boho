@@ -3,19 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Successful | Boho Blackboard</title>
+  <title>Thank You | Boho Blackboard</title>
 
   <link rel="icon" type="image/png" href="bb favicon.png">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
 
-  <script>
-  // clear cart
-  localStorage.removeItem("cart");
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 
 <body>
+
 <header>
   <h1 class="logo">Boho Blackboard</h1>
   <div class="swoosh"></div>
@@ -25,30 +22,77 @@
   <img src="banner.png" alt="Success Banner">
 </section>
 
-<main class="content">
-  <h2>Payment Successful!</h2>
-  <p class="intro">
-    Thank you for your purchase!  
-    Your digital files will be delivered to your email shortly.
-  </p>
+<main class="content" style="text-align:center;">
+  <h2>Thank You for Your Purchase!</h2>
+  <p>Your download links are being emailed to you now.</p>
 
-  <p style="text-align:center;">
-    If you have any issues, please contact me at:<br>
-    <strong>bohoblackboard@gmail.com</strong>
-  </p>
+  <p>If you do not receive an email within 2 minutes, please check spam/junk or contact us.</p>
 
-  <div style="text-align:center;">
-    <a href="index.html" class="checkout-btn">Return to Home</a>
-  </div>
+  <h3 id="status" style="margin-top:20px; color:#444;"></h3>
 </main>
 
 <footer>
-  © 2025 Boho Blackboard | Designed from the heart by Danielle Droste 
-  <br><a href="terms.html">Terms</a> • 
-  <a href="privacy.html">Privacy</a> • 
-  <a href="refund.html">Refund Policy</a> • 
-  <a href="downloads.html">Digital Delivery</a>
+  © 2025 Boho Blackboard | Designed from the heart by Danielle Droste
 </footer>
+
+<script>
+emailjs.init("_RstzO3AfSZ0UV3y7"); // YOUR PUBLIC KEY
+
+// Read PayFast parameters
+const urlParams = new URLSearchParams(window.location.search);
+const customerEmail = urlParams.get("email");
+
+// PayFast sends custom fields via POST → but Netlify converts them to GET
+const cartData = urlParams.get("custom_str1"); 
+
+// Convert cart JSON back into JS array
+let cart = [];
+try {
+  if (cartData) cart = JSON.parse(cartData);
+} catch (error) {
+  console.error("Cart parse error:", error);
+}
+
+console.log("EMAIL:", customerEmail);
+console.log("CART:", cart);
+
+// Download links for each product
+const downloadLinks = {
+  "Boho-Dachshunds": "https://bohoblackboard.netlify.app/downloads/dachshunds.zip",
+  "Boho-Bears": "https://bohoblackboard.netlify.app/downloads/bears.zip",
+  "Boho-Bunnies": "https://bohoblackboard.netlify.app/downloads/bunnies.zip",
+  "Boho-Owls": "https://bohoblackboard.netlify.app/downloads/owls.zip",
+  "Boho-Ringnecks": "https://bohoblackboard.netlify.app/downloads/ringnecks.zip",
+  "Boho-Squirrels": "https://bohoblackboard.netlify.app/downloads/squirrels.zip"
+};
+
+// Build email message containing ALL purchased items
+let messageLinks = "";
+
+cart.forEach(item => {
+  if (downloadLinks[item.name]) {
+    messageLinks += `${item.name}: ${downloadLinks[item.name]}\n`;
+  }
+});
+
+// Send email
+if (customerEmail && messageLinks) {
+  emailjs.send("service_96euu0a", "template_wxt1tto", {
+    customer_email: customerEmail,
+    product_name: "Your purchases from Boho Blackboard",
+    download_link: messageLinks
+  })
+  .then(() => {
+    document.getElementById("status").innerText = 
+      "Your download email has been sent successfully! ❤️";
+  })
+  .catch(err => {
+    console.error("Email error:", err);
+    document.getElementById("status").innerText =
+      "We could not send your email. Please contact support.";
+  });
+}
+</script>
 
 </body>
 </html>
