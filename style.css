@@ -750,3 +750,6 @@ footer {
     background-color: #e6dfd2;
     border-color: #5e5c55;
 }
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Patrick Hand', cursive;
+}
