@@ -1,14 +1,17 @@
-// Load cart from localStorage or create an empty one
+// ==============================
+//  CART STORAGE
+// ==============================
 function getCart() {
   return JSON.parse(localStorage.getItem("cart") || "[]");
 }
 
-// Save cart
 function saveCart(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Add item
+// ==============================
+//  ADD / REMOVE ITEMS
+// ==============================
 function addToCart(name, price, image = "") {
   const cart = getCart();
   cart.push({ name, price: Number(price), image });
@@ -17,7 +20,6 @@ function addToCart(name, price, image = "") {
   alert(`${name} added to cart!`);
 }
 
-// Remove item
 function removeFromCart(index) {
   const cart = getCart();
   cart.splice(index, 1);
@@ -26,14 +28,18 @@ function removeFromCart(index) {
   updateCartCount();
 }
 
-// Update counter bubble
+// ==============================
+//  CART COUNTER
+// ==============================
 function updateCartCount() {
   const cart = getCart();
-  const countElement = document.getElementById("cart-count");
-  if (countElement) countElement.textContent = cart.length;
+  const el = document.getElementById("cart-count");
+  if (el) el.textContent = cart.length;
 }
 
-// Build the cart page
+// ==============================
+//  CART PAGE RENDER
+// ==============================
 function updateCartPage() {
   const container = document.getElementById("cart-items");
   const totalEl = document.getElementById("cart-total");
@@ -42,16 +48,15 @@ function updateCartPage() {
 
   const cart = getCart();
   container.innerHTML = "";
-
   let total = 0;
 
   cart.forEach((item, index) => {
     total += Number(item.price);
 
-    const card = document.createElement("div");
-    card.classList.add("cart-item");
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
 
-    card.innerHTML = `
+    div.innerHTML = `
       <img src="${item.image}" class="cart-thumb">
       <div class="cart-info">
         <h4>${item.name}</h4>
@@ -59,52 +64,43 @@ function updateCartPage() {
       </div>
       <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
     `;
-    container.appendChild(card);
+
+    container.appendChild(div);
   });
 
   totalEl.textContent = "R" + total;
 }
 
-// Listen for Add-to-Cart button clicks
-document.addEventListener("click", function (event) {
-  if (event.target.classList.contains("add-to-cart")) {
-    event.preventDefault();
+// ==============================
+//  PAYFAST FIELD SYNC
+// ==============================
+function prepareCheckout() {
+  const email = document.getElementById("customerEmail").value;
 
-    const name = event.target.dataset.product;
-    const price = event.target.dataset.price;
-    const image = event.target.dataset.image || ""; // optional
-
-    addToCart(name, price, image);
+  if (!email) {
+    alert("Please enter your email address before paying.");
+    return false;
   }
-});
 
-// Run counter updater on load
-document.addEventListener("DOMContentLoaded", updateCartCount);
-// ---------- PAYFAST INTEGRATION ----------
-function updatePayFastFields() {
   const cart = getCart();
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
 
-  // Build product list (PayFast only accepts 100 chars)
-  let itemNames = cart.map(item => item.name).join(", ");
-  if (itemNames.length > 100) {
-    itemNames = itemNames.substring(0, 97) + "...";
-  }
+  document.getElementById("pf-email").value = email;
+  document.getElementById("pf-cart-json").value = JSON.stringify(cart);
+  document.getElementById("pf-amount").value = total.toFixed(2);
 
-  // Calculate total
-  const total = cart.reduce((sum, item) => sum + Number(item.price), 0);
+  document.getElementById("pf-return").value =
+    "https://bohoblackboard.github.io/boho/success.html" +
+    "?email=" + encodeURIComponent(email) +
+    "&custom_str1=" + encodeURIComponent(JSON.stringify(cart));
 
-  // Assign values to hidden PayFast fields
-  const amountField = document.getElementById("pf-amount");
-  const itemField = document.getElementById("pf-item-name");
-
-  if (amountField) amountField.value = total.toFixed(2);
-  if (itemField) itemField.value = itemNames;
+  return true;
 }
 
-// Re-run PayFast field sync when cart updates
+// ==============================
+//  INITIAL LOAD
+// ==============================
 document.addEventListener("DOMContentLoaded", () => {
   updateCartPage();
   updateCartCount();
-  updatePayFastFields();
 });
-
