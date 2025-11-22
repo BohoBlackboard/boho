@@ -11,6 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
   <script>
+    // Your EmailJS Public Key
     emailjs.init("_RstzO3AfSZ0UV3y7");
   </script>
 </head>
@@ -23,12 +24,13 @@
 </header>
 
 <section class="sub-banner">
-  <img src="banner.png" alt="Success Banner">
+  <img src="banner.png" alt="Payment Success Banner">
 </section>
 
 <main class="content" style="text-align:center;">
   <h2>Thank You for Your Purchase!</h2>
-  <p>Your download links are being emailed to you now.</p>
+  <p>Your download links are being emailed to you now. ❤️</p>
+  <p>If you do not receive an email within 2 minutes, please check your spam/junk folder.</p>
 
   <h3 id="status" style="margin-top:20px; color:#444;"></h3>
 </main>
@@ -40,59 +42,78 @@
 <script>
 console.log("SUCCESS PAGE LOADED");
 
+// Read URL parameters
 const params = new URLSearchParams(window.location.search);
-
 const customerEmail = params.get("email");
-const cartJSON = params.get("custom_str1");
-
-let cart = [];
-try {
-  if (cartJSON) cart = JSON.parse(decodeURIComponent(cartJSON));
-} catch (err) {
-  console.error("JSON parse error:", err);
-}
+const productIDs = params.get("products"); // e.g. "DSH_EN,OWL_AF"
 
 console.log("EMAIL:", customerEmail);
-console.log("CART:", cart);
+console.log("PRODUCT IDS:", productIDs);
 
-// Download links:
+// If nothing came through, stop
+if (!customerEmail || !productIDs) {
+  document.getElementById("status").innerText =
+    "We could not generate your email. Please contact support.";
+  throw new Error("Missing parameters");
+}
+
+// Convert CSV → array
+const idList = productIDs.split(",");
+
+// DOWNLOAD LINKS mapped to IDs
 const downloadLinks = {
-  "Boho-Dachshunds": "downloads/boho-dachshunds.zip",
-  "Boho-Dachshunds-Afrikaans": "downloads/boho-dachshunds-afrikaans.zip",
-  "Boho-Owls": "downloads/boho-owls.zip",
-  "Boho-Owls-Afrikaans": "downloads/boho-owls-afrikaans.zip"
+
+  // Dachshunds
+  "DSH_EN": "https://bohoblackboard.github.io/boho/downloads/boho-dachshunds-english.zip",
+  "DSH_AF": "https://bohoblackboard.github.io/boho/downloads/boho-dachshunds-afrikaans.zip",
+
+  // Bears
+  "BRS_EN": "https://bohoblackboard.github.io/boho/downloads/boho-bears-english.zip",
+  "BRS_AF": "https://bohoblackboard.github.io/boho/downloads/boho-bears-afrikaans.zip",
+
+  // Bunnies
+  "BUN_EN": "https://bohoblackboard.github.io/boho/downloads/boho-bunnies-english.zip",
+  "BUN_AF": "https://bohoblackboard.github.io/boho/downloads/boho-bunnies-afrikaans.zip",
+
+  // Owls
+  "OWL_EN": "https://bohoblackboard.github.io/boho/downloads/boho-owls-english.zip",
+  "OWL_AF": "https://bohoblackboard.github.io/boho/downloads/boho-owls-afrikaans.zip",
+
+  // Ringnecks
+  "RNG_EN": "https://bohoblackboard.github.io/boho/downloads/boho-ringnecks-english.zip",
+  "RNG_AF": "https://bohoblackboard.github.io/boho/downloads/boho-ringnecks-afrikaans.zip",
+
+  // Squirrels
+  "SQR_EN": "https://bohoblackboard.github.io/boho/downloads/boho-squirrels-english.zip",
+  "SQR_AF": "https://bohoblackboard.github.io/boho/downloads/boho-squirrels-afrikaans.zip"
 };
 
-let messageLinks = "";
+// Build email text
+let linkText = "";
 
-cart.forEach(item => {
-  if (downloadLinks[item.name]) {
-    messageLinks += `${item.name}: https://bohoblackboard.github.io/boho/${downloadLinks[item.name]}\n`;
+idList.forEach(id => {
+  if (downloadLinks[id]) {
+    linkText += `${id}: ${downloadLinks[id]}\n`;
   }
 });
 
-// Send email
-if (customerEmail && messageLinks) {
+console.log("EMAIL CONTENT:\n" + linkText);
 
-  emailjs.send("service_96euu0a", "template_wxt1tto", {
-    customer_email: customerEmail,
-    product_name: "Your Boho Blackboard Downloads",
-    download_link: messageLinks
-  })
-  .then(() => {
-    document.getElementById("status").innerText =
-      "Your download email has been sent successfully! ❤️";
-  })
-  .catch(err => {
-    console.error("EmailJS Error:", err);
-    document.getElementById("status").innerText =
-      "There was a problem sending your email. Please contact support.";
-  });
-
-} else {
+// Send EmailJS email
+emailjs.send("service_96euu0a", "template_wxt1tto", {
+  customer_email: customerEmail,
+  product_name: "Your Boho Blackboard Downloads",
+  download_link: linkText
+})
+.then(() => {
   document.getElementById("status").innerText =
-    "We could not generate your download email. Please contact support.";
-}
+    "Your download email has been sent successfully! 🎉";
+})
+.catch(err => {
+  console.error("EmailJS Error:", err);
+  document.getElementById("status").innerText =
+    "There was a problem sending your email. Please contact support.";
+});
 </script>
 
 </body>
