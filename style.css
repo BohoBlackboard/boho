@@ -339,20 +339,27 @@ footer a:hover {
   padding: 2rem;
   border-radius: 20px;
 }
+/* Freebies grid layout */
+.freebies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Freebie card styling (matching resource cards) */
 .freebie-card {
   background-color: #f3e7dc;
   padding: 1.6rem;
-  margin: 2rem auto;
+  text-align: center;
   border-radius: 18px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.10);
-  text-align: center;
-  max-width: 600px;
 }
 
 .freebie-card h3 {
   font-family: 'Patrick Hand', cursive;
   font-size: 1.6rem;
-  margin-top: 0;
+  margin-bottom: 0.6rem;
   color: #4b3d36;
 }
 
@@ -362,6 +369,7 @@ footer a:hover {
   margin-bottom: 1.4rem;
 }
 
+/* Button (same as resource button) */
 .freebie-card .resource-btn {
   display: inline-block;
   background: #9fb59e;
@@ -375,4 +383,5 @@ footer a:hover {
 .freebie-card .resource-btn:hover {
   background: #8fa88e;
 }
+
 
