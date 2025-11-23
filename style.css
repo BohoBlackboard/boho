@@ -345,3 +345,10 @@ footer a:hover {
     gap: 3rem;                 /* more space on desktop */
   }
 }
+.content {
+  max-width: 900px;   /* wider layout */
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+}
