@@ -1,4 +1,6 @@
-/* ------------------- Global ------------------- */
+/* ---------------------------------------------------
+   GLOBAL STYLES — EXACT ORIGINAL RESTORE
+--------------------------------------------------- */
 body {
   margin: 0;
   font-family: 'Quicksand', sans-serif;
@@ -9,10 +11,11 @@ body {
   color: #4b3d36;
 }
 
-/* Patrick Hand Headers */
+/* Headings (Patrick Hand) */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Patrick Hand', cursive;
   color: #4b3d36;
+  margin-top: 0;
 }
 
 img {
@@ -21,15 +24,17 @@ img {
   height: auto;
 }
 
-/* ------------------- Header ------------------- */
+/* ---------------------------------------------------
+   HEADER — EXACT MATCH
+--------------------------------------------------- */
 header {
   text-align: center;
   padding: 2rem 1rem 1rem;
-  background-color: rgba(214,191,167,0.8);
+  background-color: rgba(214,191,167,0.90);
 }
 
 .logo {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Patrick Hand', cursive;
   font-size: 3rem;
   margin: 0;
   color: #593f2f;
@@ -43,7 +48,9 @@ header {
   margin: 0.6rem auto 0.8rem;
 }
 
-/* ------------------- NAV ------------------- */
+/* ---------------------------------------------------
+   NAVIGATION BAR — EXACT RESTORE
+--------------------------------------------------- */
 nav.sticky {
   position: sticky;
   top: 0;
@@ -56,7 +63,7 @@ nav.sticky {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 1.4rem;
   padding: 0;
   margin: 0;
 }
@@ -65,8 +72,9 @@ nav.sticky {
   text-decoration: none;
   color: #6a5647;
   font-weight: 500;
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 6px;
+  transition: 0.3s;
 }
 
 .nav-links a:hover,
@@ -75,7 +83,7 @@ nav.sticky {
   color: white;
 }
 
-/* Dropdown */
+/* Dropdown Menu */
 .dropdown {
   position: relative;
 }
@@ -84,11 +92,10 @@ nav.sticky {
   display: none;
   position: absolute;
   background-color: #fff7f0;
-  text-align: left;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   min-width: 160px;
   border-radius: 8px;
   padding: 8px 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .dropdown:hover .dropdown-content {
@@ -101,21 +108,25 @@ nav.sticky {
   color: #4a3f35;
 }
 
-/* ------------------- Sub-Banner ------------------- */
+/* ---------------------------------------------------
+   SUB BANNER — EXACT HEIGHT
+--------------------------------------------------- */
 .sub-banner img {
   width: 100%;
   height: 130px;
   object-fit: contain;
 }
 
-/* ------------------- Page Content ------------------- */
+/* ---------------------------------------------------
+   MAIN CONTENT BOX — ORIGINAL CLEAN RESTORE
+--------------------------------------------------- */
 main.content {
-  max-width: 800px;
+  max-width: 900px;
   margin: 2rem auto;
-  background: rgba(255,255,255,0.85);
-  padding: 2rem;
-  border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.9);
+  padding: 2.4rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
 }
 
 .intro {
@@ -124,75 +135,50 @@ main.content {
   color: #6b5647;
 }
 
-/* ------------------- About Page ------------------- */
-.about-photo {
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: -80px auto 1rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+/* Soft pastel divider */
+hr {
+  border: 0;
+  height: 2px;
+  width: 120px;
+  background: #d6c6b8;
+  margin: 1.5rem auto;
+  border-radius: 10px;
 }
 
-.about-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* ---------------------------------------------------
+   RESOURCE CARDS — PERFECT MATCH
+--------------------------------------------------- */
+.resource-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding-top: 1rem;
 }
 
-/* ------------------- Classroom Themes ------------------- */
-.theme-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.theme-box {
-  background-color: #f3e7dc;
-  padding: 1.5rem;
-  text-align: center;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.theme-box img {
-  width: 140px;
-  margin: 0 auto;
-}
-
-.theme-box h3 {
-  margin-top: 0.8rem;
-}
-
-/* ------------------- Buttons ------------------- */
-button,
-.checkout-btn,
-.add-to-cart-btn {
-  background-color: #a7b59f;
-  color: white;
-  padding: 0.8rem 1.6rem;
-  border-radius: 12px;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-button:hover,
-.checkout-btn:hover,
-.add-to-cart-btn:hover {
-  background-color: #8fa48b;
-}
-
-/* ------------------- Resources Blocks ------------------- */
 .resource-card {
-  background: #f6eee7;
-  padding: 2rem;
-  border-radius: 20px;
-  margin: 1.8rem 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  background-color: #f3e7dc;
+  border-radius: 18px;
+  width: 300px;
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+
+.resource-card .header-bar {
+  background-color: #a7b59f;
+  height: 22px;
+  border-radius: 8px 8px 0 0;
+  margin: -1.2rem -1.2rem 1rem;
+}
+
+.resource-card h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.6rem;
 }
 
 .resource-btn {
+  margin-top: 1rem;
   display: inline-block;
   background: #9fb59e;
   color: white;
@@ -205,10 +191,120 @@ button:hover,
   background: #8fa88e;
 }
 
-/* ------------------- Footer ------------------- */
-footer {
-  background-color: rgba(214,191,167,0.8);
+/* ---------------------------------------------------
+   CLASSROOM THEMES — EXACT ORIGINAL GRID
+--------------------------------------------------- */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.theme-box {
+  background-color: #f3e7dc;
+  padding: 1.6rem;
   text-align: center;
-  padding: 1rem;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.theme-box .header-bar {
+  background-color: #a7b59f;
+  height: 22px;
+  border-radius: 10px 10px 0 0;
+  margin: -1.6rem -1.6rem 1rem;
+}
+
+.theme-box img {
+  width: 70px;
+  margin: 0 auto 0.4rem;
+}
+
+.theme-box h3 {
+  margin-top: 0.2rem;
+  font-size: 1.6rem;
+}
+
+.theme-box p {
+  font-size: 1rem;
+  color: #5d4d43;
+}
+
+/* ---------------------------------------------------
+   ABOUT PAGE — RESTORE PERFECT VERSION
+--------------------------------------------------- */
+.about-photo {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: -80px auto 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------------------------------------------------
+   BUTTONS — ORIGINAL
+--------------------------------------------------- */
+button,
+.add-to-cart-btn,
+.checkout-btn {
+  background-color: #a7b59f;
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.add-to-cart-btn:hover,
+button:hover {
+  background-color: #8fa48b;
+}
+
+/* ---------------------------------------------------
+   FOOTER — ORIGINAL
+--------------------------------------------------- */
+footer {
+  background-color: rgba(214,191,167,0.90);
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.9rem;
   color: #4b3d36;
+}
+
+footer a {
+  color: #4b3d36;
+  text-decoration: none;
+  margin: 0 0.4rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------
+   MOBILE FIXES — ORIGINAL FEEL
+--------------------------------------------------- */
+@media (max-width: 768px) {
+  main.content {
+    margin: 1rem;
+    padding: 1.6rem;
+  }
+
+  .resource-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .theme-grid {
+    grid-template-columns: 1fr;
+  }
 }
