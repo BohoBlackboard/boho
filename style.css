@@ -1,5 +1,5 @@
 /* ---------------------------------------------------
-   GLOBAL STYLES
+   GLOBAL
 --------------------------------------------------- */
 body {
   margin: 0;
@@ -7,27 +7,41 @@ body {
   background: url('Boho.jpg') center/cover fixed no-repeat;
   color: #4b3d36;
   line-height: 1.6;
+  position: relative;
 }
 
-/* Headings - Patrick Hand */
+/* Soft overlay to prevent background washing out boxes */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.55);
+  z-index: -1;
+}
+
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Patrick Hand', cursive !important;
+  font-family: 'Patrick Hand', cursive;
   color: #3e2f24;
-  margin-top: 0;
+  margin: 0 0 0.5rem;
 }
 
-/* Universal image fix */
+h1 { font-size: 2.4rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+/* Default images - NOT full width anymore */
 img {
-  max-width: 100%;
-  height: auto;
   display: block;
+  height: auto;
+  max-width: 100%;
 }
 
-/* Small clean boho preview images */
+/* Prevent giant PNGs anywhere */
 .theme-img,
-.theme-preview-section img,
-.preview-item img {
-  max-width: 250px;
+.preview-item img,
+.theme-preview-section img {
+  max-width: 180px;
   margin: 0 auto;
   object-fit: contain;
 }
@@ -38,7 +52,6 @@ img {
 header {
   text-align: center;
   background-color: rgba(214,191,167,0.9);
-  color: #3e2f24;
   padding: 2rem 1rem 1rem;
 }
 
@@ -80,7 +93,7 @@ nav.sticky {
 .nav-links a {
   text-decoration: none;
   color: #5e4a3d;
-  font-weight: 500;
+  font-weight: 600;
   padding: 6px 12px;
   border-radius: 6px;
   transition: 0.3s;
@@ -92,7 +105,7 @@ nav.sticky {
   color: #fff;
 }
 
-/* Dropdown fix */
+/* Dropdown */
 .dropdown {
   position: relative;
 }
@@ -100,39 +113,37 @@ nav.sticky {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f8f4ef;
+  background: #f8f4ef;
   min-width: 160px;
   border-radius: 8px;
   padding: 8px 0;
   box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-  text-align: left;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-.dropdown-content li a {
-  padding: 10px 12px;
+.dropdown-content a {
   display: block;
+  padding: 10px 12px;
   color: #4a3f35;
 }
 
 /* ---------------------------------------------------
-   SUB-BANNERS
+   SUB-BANNER
 --------------------------------------------------- */
 .sub-banner img {
   width: 100%;
   max-height: 130px;
   object-fit: contain;
-  margin: 0 auto;
 }
 
 /* ---------------------------------------------------
-   MAIN CONTENT BOX
+   MAIN CONTENT
 --------------------------------------------------- */
 main.content {
-  max-width: 800px;
+  max-width: 850px;
   margin: 2rem auto;
   background: rgba(255, 255, 255, 0.92);
   border-radius: 14px;
@@ -141,21 +152,21 @@ main.content {
 }
 
 .intro {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   text-align: center;
   color: #5c4c44;
 }
 
 /* ---------------------------------------------------
-   ABOUT PAGE IMAGE
+   ABOUT PAGE
 --------------------------------------------------- */
 .about-photo {
   width: 250px;
   height: 250px;
   border-radius: 50%;
   overflow: hidden;
-  margin: -80px auto 1rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin: -70px auto 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
 }
 
 .about-photo img {
@@ -176,73 +187,112 @@ main.content {
 
 .theme-box {
   background: #f3e7dc;
-  border-radius: 12px;
-  padding: 1rem 1rem 1.5rem;
+  border-radius: 14px;
+  padding: 1.4rem;
   text-align: center;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
 .theme-box img {
-  max-width: 160px;
-  margin: 0 auto;
+  max-width: 140px;
+  margin: 0 auto 0.7rem;
 }
 
 .theme-box h3 {
-  margin-top: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+/* Coming soon */
+.theme-box.coming {
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 /* ---------------------------------------------------
-   THEME PREVIEW GRID
+   PREVIEW GRID
 --------------------------------------------------- */
 .preview-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 1.2rem;
-  padding: 1rem;
 }
 
 .preview-item {
   background: #fff;
-  padding: 0.6rem;
-  border-radius: 10px;
+  padding: 0.7rem;
+  border-radius: 12px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-  transition: transform 0.2s;
+  transition: 0.2s;
 }
 
 .preview-item:hover {
   transform: scale(1.05);
 }
 
-.preview-item img {
-  max-width: 250px;
+/* ---------------------------------------------------
+   HOME PAGE RESOURCE BLOCKS
+--------------------------------------------------- */
+.home-resources-block {
+  max-width: 850px;
   margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.resource-card {
+  background: #f6eee7;
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.resource-card h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.6rem;
+  color: #5b4636;
+}
+
+.resource-card p {
+  color: #6b5b51;
+}
+
+.resource-btn {
+  display: inline-block;
+  background: #9fb59e;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.resource-btn:hover {
+  background: #8fa88e;
 }
 
 /* ---------------------------------------------------
    BUTTONS
 --------------------------------------------------- */
 button,
-.checkout-btn,
-.add-to-cart-btn {
-  background-color: #a7b59f;
+.add-to-cart-btn,
+.checkout-btn {
+  background: #a7b59f;
   color: white;
   padding: 0.8rem 1.6rem;
-  border: none;
   border-radius: 10px;
+  border: none;
   cursor: pointer;
-  transition: 0.3s;
   font-size: 1rem;
 }
 
 button:hover,
-.checkout-btn:hover,
-.add-to-cart-btn:hover {
-  background-color: #8ea28a;
-  transform: translateY(-3px);
+.add-to-cart-btn:hover,
+.checkout-btn:hover {
+  background: #8ea28a;
 }
 
 /* ---------------------------------------------------
-   CART PAGE
+   CART LAYOUT
 --------------------------------------------------- */
 .cart-item {
   display: flex;
@@ -275,7 +325,19 @@ footer {
   padding: 1rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #3e2f24;
+}
+
+/* ---------------------------------------------------
+   LINKS
+--------------------------------------------------- */
+a {
+  text-decoration: none;
+  color: #5e4a3d;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #3f3228;
 }
 
 /* ---------------------------------------------------
@@ -295,61 +357,9 @@ footer {
   .about-photo {
     width: 200px;
     height: 200px;
-    margin-top: -50px;
   }
 
   .preview-item img {
-    max-width: 220px;
+    max-width: 200px;
   }
-}
-a {
-  text-decoration: none;
-  color: inherit; /* keeps your text colour consistent */
-}
-
-a:hover {
-  text-decoration: underline;
-}
-.home-resources-block {
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.resource-card {
-  background: #f6eee7; /* soft boho beige */
-  padding: 2rem;
-  border-radius: 20px;
-  margin-bottom: 2rem;
-  text-align: left;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.resource-card h3 {
-  font-family: 'Patrick Hand', cursive;
-  color: #5b4636;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.resource-card p {
-  font-family: 'Quicksand', sans-serif;
-  color: #6b5b51;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.resource-btn {
-  display: inline-block;
-  background: #9fb59e; /* your boho green button */
-  color: white;
-  padding: 0.7rem 1.4rem;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.2s ease-in-out;
-}
-
-.resource-btn:hover {
-  background: #8fa88e;
 }
