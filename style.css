@@ -321,3 +321,27 @@ footer a:hover {
     grid-template-columns: 1fr;
   }
 }
+/* Center the resource blocks */
+.resource-container {
+  display: flex;
+  flex-direction: column;   /* mobile-friendly stacking */
+  align-items: center;      /* centers each block */
+  gap: 2rem;                /* spacing between them */
+  margin-top: 2rem;
+}
+
+/* Optional higher width on desktop */
+.resource-card {
+  max-width: 350px;
+  width: 90%;
+  text-align: center;
+}
+
+/* Desktop layout (3 in a row but still centred) */
+@media (min-width: 900px) {
+  .resource-container {
+    flex-direction: row;
+    justify-content: center;   /* centers the row of cards */
+    gap: 3rem;                 /* more space on desktop */
+  }
+}
