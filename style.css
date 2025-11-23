@@ -240,10 +240,10 @@ hr {
   margin-top: 2rem;
 }
 .about-photo {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: fill;
   border: 4px solid #d7b9aa;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   margin: 2rem auto;
