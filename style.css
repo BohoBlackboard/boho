@@ -248,6 +248,19 @@ hr {
   height: 100%;
   object-fit: cover;
 }
+.about-me {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.about-photo {
+  width: 180px;              /* Size of the circle */
+  height: 180px;
+  border-radius: 50%;        /* Makes it a circle */
+  object-fit: cover;         /* Keeps your face centred */
+  border: 4px solid #d8c3b1; /* Soft boho border */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
 
 /* ---------------------------------------------------
    BUTTONS — ORIGINAL
