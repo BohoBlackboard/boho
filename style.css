@@ -9,28 +9,27 @@ body {
   line-height: 1.6;
 }
 
-/* HEADINGS */
+/* Headings - Patrick Hand */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Patrick Hand', cursive !important;
   color: #3e2f24;
+  margin-top: 0;
 }
 
-h2 { font-size: 2.2rem; }
-h3 { font-size: 1.7rem; }
-
-/* UNIVERSAL IMAGE FIX */
+/* Universal image fix */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Prevent FULLSCREEN floating art on pages */
-.theme-art,
-.theme-hero-img {
-  max-width: 380px;
-  margin: 0 auto 1.5rem;
-  display: block;
+/* Small clean boho preview images */
+.theme-img,
+.theme-preview-section img,
+.preview-item img {
+  max-width: 250px;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
 /* ---------------------------------------------------
@@ -65,7 +64,7 @@ nav.sticky {
   top: 0;
   background-color: #f2e7de;
   padding: 10px 0;
-  z-index: 50;
+  z-index: 20;
 }
 
 .nav-links {
@@ -79,7 +78,7 @@ nav.sticky {
 }
 
 .nav-links a {
-  text-decoration: none !important;
+  text-decoration: none;
   color: #5e4a3d;
   font-weight: 500;
   padding: 6px 12px;
@@ -93,17 +92,20 @@ nav.sticky {
   color: #fff;
 }
 
-/* DROPDOWN */
-.dropdown { position: relative; }
+/* Dropdown fix */
+.dropdown {
+  position: relative;
+}
 
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f8f4ef;
   min-width: 160px;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 8px 0;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  text-align: left;
 }
 
 .dropdown:hover .dropdown-content {
@@ -111,138 +113,132 @@ nav.sticky {
 }
 
 .dropdown-content li a {
-  padding: 8px 12px;
+  padding: 10px 12px;
   display: block;
   color: #4a3f35;
 }
 
 /* ---------------------------------------------------
-   TOP BANNERS
+   SUB-BANNERS
 --------------------------------------------------- */
 .sub-banner img {
   width: 100%;
-  max-height: 140px;
+  max-height: 130px;
   object-fit: contain;
+  margin: 0 auto;
 }
 
 /* ---------------------------------------------------
    MAIN CONTENT BOX
 --------------------------------------------------- */
 main.content {
-  max-width: 850px;
+  max-width: 800px;
   margin: 2rem auto;
-  background-color: rgba(255,255,255,0.9);
-  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 14px;
   padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .intro {
   font-size: 1.1rem;
+  text-align: center;
   color: #5c4c44;
-  margin-bottom: 1rem;
 }
 
 /* ---------------------------------------------------
-   CLASSROOM THEME CARDS GRID
+   ABOUT PAGE IMAGE
+--------------------------------------------------- */
+.about-photo {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: -80px auto 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------------------------------------------------
+   CLASSROOM THEMES GRID
 --------------------------------------------------- */
 .theme-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  padding: 10px;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-.theme-card {
+.theme-box {
   background: #f3e7dc;
-  padding: 1.5rem;
   border-radius: 12px;
+  padding: 1rem 1rem 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: 0.25s ease-out;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
-.theme-card:hover {
-  transform: translateY(-5px);
+.theme-box img {
+  max-width: 160px;
+  margin: 0 auto;
 }
 
-.theme-card img {
-  max-width: 240px;
-  margin: 0 auto 15px;
-}
-
-.theme-title a {
-  color: #3e2f24 !important;
-  text-decoration: none !important;
-  font-family: 'Patrick Hand', cursive !important;
-  font-size: 1.6rem;
-}
-
-.theme-title a:hover {
-  color: #a48372 !important;
+.theme-box h3 {
+  margin-top: 0.8rem;
 }
 
 /* ---------------------------------------------------
-   PRODUCT GRIDS
+   THEME PREVIEW GRID
 --------------------------------------------------- */
-.product-grid,
-.product-sections {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+  padding: 1rem;
 }
 
-.product-card,
-.product-box {
-  background-color: #f3e7dc;
+.preview-item {
+  background: #fff;
+  padding: 0.6rem;
   border-radius: 10px;
-  padding-bottom: 1rem;
-  width: 300px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  transition: 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  transition: transform 0.2s;
 }
 
-.product-card:hover,
-.product-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+.preview-item:hover {
+  transform: scale(1.05);
+}
+
+.preview-item img {
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 /* ---------------------------------------------------
    BUTTONS
 --------------------------------------------------- */
 button,
-.checkout-btn {
+.checkout-btn,
+.add-to-cart-btn {
   background-color: #a7b59f;
   color: white;
-  padding: 0.7rem 1.4rem;
+  padding: 0.8rem 1.6rem;
   border: none;
-  border-radius: 8px;
-  font-weight: 500;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
+  font-size: 1rem;
 }
 
 button:hover,
-.checkout-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.add-to-cart-btn {
-  background-color: #a7b59f;
-  padding: 1rem 2.2rem;
-  border-radius: 30px;
-  color: white;
-  display: block;
-  margin: 2rem auto 0;
-  transition: 0.3s ease;
-}
-
+.checkout-btn:hover,
 .add-to-cart-btn:hover {
   background-color: #8ea28a;
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 /* ---------------------------------------------------
@@ -254,7 +250,7 @@ button:hover,
   gap: 1rem;
   background: #f3e7dc;
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 1rem;
 }
 
@@ -262,12 +258,11 @@ button:hover,
   width: 70px;
   height: 70px;
   object-fit: contain;
-  border-radius: 8px;
 }
 
 .remove-btn {
-  background-color: #d6bfa9;
-  padding: 0.5rem 1.2rem;
+  background: #d6bfa9;
+  padding: 0.4rem 1rem;
   border-radius: 8px;
   margin-left: auto;
 }
@@ -284,20 +279,26 @@ footer {
 }
 
 /* ---------------------------------------------------
-   RESPONSIVE FIXES
+   MOBILE
 --------------------------------------------------- */
 @media (max-width: 768px) {
-  main.content {
-    margin: 1rem;
-    padding: 1.5rem;
-  }
 
   .logo {
     font-size: 2.4rem;
   }
 
-  .theme-art,
-  .theme-hero-img {
-    max-width: 300px;
+  main.content {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .about-photo {
+    width: 200px;
+    height: 200px;
+    margin-top: -50px;
+  }
+
+  .preview-item img {
+    max-width: 220px;
   }
 }
