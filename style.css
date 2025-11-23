@@ -339,4 +339,40 @@ footer a:hover {
   padding: 2rem;
   border-radius: 20px;
 }
+.freebie-card {
+  background-color: #f3e7dc;
+  padding: 1.6rem;
+  margin: 2rem auto;
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  text-align: center;
+  max-width: 600px;
+}
+
+.freebie-card h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.6rem;
+  margin-top: 0;
+  color: #4b3d36;
+}
+
+.freebie-card p {
+  color: #5d4d43;
+  font-size: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.freebie-card .resource-btn {
+  display: inline-block;
+  background: #9fb59e;
+  color: white;
+  padding: 0.7rem 1.4rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.freebie-card .resource-btn:hover {
+  background: #8fa88e;
+}
 
