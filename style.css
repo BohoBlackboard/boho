@@ -310,3 +310,46 @@ a {
 a:hover {
   text-decoration: underline;
 }
+.home-resources-block {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.resource-card {
+  background: #f6eee7; /* soft boho beige */
+  padding: 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.resource-card h3 {
+  font-family: 'Patrick Hand', cursive;
+  color: #5b4636;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.resource-card p {
+  font-family: 'Quicksand', sans-serif;
+  color: #6b5b51;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.resource-btn {
+  display: inline-block;
+  background: #9fb59e; /* your boho green button */
+  color: white;
+  padding: 0.7rem 1.4rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s ease-in-out;
+}
+
+.resource-btn:hover {
+  background: #8fa88e;
+}
