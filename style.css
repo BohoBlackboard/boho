@@ -15,28 +15,23 @@ h1, h2, h3, h4, h5, h6 {
   color: #3e2f24;
 }
 
-/* UNIVERSAL IMAGE FIX – prevents huge images */
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.7rem; }
+
+/* UNIVERSAL IMAGE FIX */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Art illustrations (Dachshunds, Owls, Bunnies, About photo) */
-.theme-art {
-  max-width: 380px;     /* Adjusted size */
-  margin: 2rem auto;
+/* Prevent FULLSCREEN floating art on pages */
+.theme-art,
+.theme-hero-img {
+  max-width: 380px;
+  margin: 0 auto 1.5rem;
   display: block;
 }
-
-/* Preview images inside grids */
-.theme-preview-section img,
-.theme-preview img {
-  max-width: 400px;
-  object-fit: contain;
-  margin: 0 auto;
-}
-
 
 /* ---------------------------------------------------
    HEADER
@@ -70,7 +65,7 @@ nav.sticky {
   top: 0;
   background-color: #f2e7de;
   padding: 10px 0;
-  z-index: 20;
+  z-index: 50;
 }
 
 .nav-links {
@@ -84,13 +79,12 @@ nav.sticky {
 }
 
 .nav-links a {
-  text-decoration: none;
+  text-decoration: none !important;
   color: #5e4a3d;
   font-weight: 500;
   padding: 6px 12px;
   border-radius: 6px;
   transition: 0.3s;
-  position: relative;
 }
 
 .nav-links a:hover,
@@ -99,7 +93,7 @@ nav.sticky {
   color: #fff;
 }
 
-/* Dropdown */
+/* DROPDOWN */
 .dropdown { position: relative; }
 
 .dropdown-content {
@@ -117,19 +111,18 @@ nav.sticky {
 }
 
 .dropdown-content li a {
-  display: block;
   padding: 8px 12px;
+  display: block;
   color: #4a3f35;
 }
 
 /* ---------------------------------------------------
-   BANNERS
+   TOP BANNERS
 --------------------------------------------------- */
 .sub-banner img {
   width: 100%;
   max-height: 140px;
   object-fit: contain;
-  margin: 0 auto;
 }
 
 /* ---------------------------------------------------
@@ -147,6 +140,46 @@ main.content {
 .intro {
   font-size: 1.1rem;
   color: #5c4c44;
+  margin-bottom: 1rem;
+}
+
+/* ---------------------------------------------------
+   CLASSROOM THEME CARDS GRID
+--------------------------------------------------- */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 10px;
+}
+
+.theme-card {
+  background: #f3e7dc;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: 0.25s ease-out;
+}
+
+.theme-card:hover {
+  transform: translateY(-5px);
+}
+
+.theme-card img {
+  max-width: 240px;
+  margin: 0 auto 15px;
+}
+
+.theme-title a {
+  color: #3e2f24 !important;
+  text-decoration: none !important;
+  font-family: 'Patrick Hand', cursive !important;
+  font-size: 1.6rem;
+}
+
+.theme-title a:hover {
+  color: #a48372 !important;
 }
 
 /* ---------------------------------------------------
@@ -263,19 +296,8 @@ footer {
     font-size: 2.4rem;
   }
 
-  .product-card,
-  .product-box {
-    width: 100%;
-  }
-
-  .dropdown-content {
-    position: relative;
-    width: 100%;
-    left: 0;
-    box-shadow: none;
-  }
-
-  .theme-art {
+  .theme-art,
+  .theme-hero-img {
     max-width: 300px;
   }
 }
