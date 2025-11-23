@@ -302,3 +302,11 @@ footer {
     max-width: 220px;
   }
 }
+a {
+  text-decoration: none;
+  color: inherit; /* keeps your text colour consistent */
+}
+
+a:hover {
+  text-decoration: underline;
+}
