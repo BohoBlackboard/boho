@@ -219,37 +219,34 @@ hr {
   font-size: 1rem;
   color: #5d4d43;
 }
+.theme-box a {
+  text-decoration: none;
+  color: #4b3d36;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.7rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.theme-box a:hover {
+  color: #8b6f5a;
+}
 
 /* ---------------------------------------------------
    ABOUT PAGE — RESTORE PERFECT VERSION
 --------------------------------------------------- */
-.about-photo {
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: -80px auto 2rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
-
-.about-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
 .about-me {
   text-align: center;
   margin-top: 2rem;
 }
-
 .about-photo {
   width: 150px;
-height: 150px;
-  border-radius: 50%;        /* Makes it a circle */
-  object-fit: cover;         /* Keeps your face centred */
-  border: 4px solid #d8c3b1; /* Soft boho border */
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #d7b9aa;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  border: 4px solid #d7b9aa; /* soft boho beige */
+  margin: 2rem auto;
 }
 
 /* ---------------------------------------------------
