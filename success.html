@@ -96,34 +96,50 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-// Confetti burst
-function fireConfetti() {
-  confetti({
-    particleCount: 90,
-    spread: 70,
-    origin: { y: 0.3 },
-    colors: ['#a7b59f','#d6bfa9','#f3e7dc','#8fa48b']
-  });
-}
-
-// -----------------------------------------------------------
-// EmailJS Init
-// -----------------------------------------------------------
+// ----------------------------------------------
+// EmailJS init
+// ----------------------------------------------
 emailjs.init("_RstzO3AfSZ0UV3y7");
 
-// Load saved order data
-const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-const email = localStorage.getItem("customer_email") || "";
-const statusBox = document.getElementById("status-message");
+// ----------------------------------------------
+// Try to load purchase data from URL (?data=...)
+// ----------------------------------------------
+function getPurchaseData() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const encoded = urlParams.get("data");
 
-// Friendly message rather than error
-if (!cart.length || !email) {
-  statusBox.textContent = "You are previewing this page. Download links are only sent after a successful checkout.";
-} else {
-  sendDownloadEmail();
+  if (encoded) {
+    try {
+      return JSON.parse(decodeURIComponent(encoded));
+    } catch (e) {
+      return null;
+    }
+  }
+  return null;
 }
 
-// Download links
+let purchaseData = getPurchaseData();
+
+// ----------------------------------------------
+// Fallback: Local testing (open HTML manually)
+// ----------------------------------------------
+if (!purchaseData) {
+  purchaseData = {
+    email: localStorage.getItem("customer_email") || "",
+    cart: JSON.parse(localStorage.getItem("cart") || "[]"),
+    preview: true
+  };
+}
+
+const email = purchaseData.email;
+const cart = purchaseData.cart;
+const previewMode = purchaseData.preview || false;
+
+const statusBox = document.getElementById("status-message");
+
+// ----------------------------------------------
+// ZIP download links
+// ----------------------------------------------
 const fileLinks = {
   "DSH_EN": "https://bohoblackboard.github.io/boho/downloads/boho-dachshunds.zip",
   "DSH_AF": "https://bohoblackboard.github.io/boho/downloads/boho-dachshunds-afrikaans.zip",
@@ -133,6 +149,7 @@ const fileLinks = {
   "BEAR_AF": "https://bohoblackboard.github.io/boho/downloads/boho-bears-afrikaans.zip"
 };
 
+// Friendly names
 const friendlyNames = {
   "DSH_EN": "Boho Dachshunds – English",
   "DSH_AF": "Boho Worshonde – Afrikaans",
@@ -142,35 +159,41 @@ const friendlyNames = {
   "BEAR_AF": "Boho Bere – Afrikaans"
 };
 
+// Build text list for email
 function buildList() {
-  let text = "";
+  let t = "";
   cart.forEach(item => {
-    if (fileLinks[item.code]) {
-      text += `${friendlyNames[item.code]}:\n${fileLinks[item.code]}\n\n`;
-    }
+    t += `${friendlyNames[item.code]}:\n${fileLinks[item.code]}\n\n`;
   });
-  return text;
+  return t;
+}
+
+// ----------------------------------------------
+// Send Email (only if real purchase)
+// ----------------------------------------------
+if (previewMode) {
+  statusBox.textContent = "You are previewing this page. Download links are only sent after a successful checkout.";
+} else {
+  sendDownloadEmail();
 }
 
 function sendDownloadEmail() {
   const productList = buildList();
 
-  emailjs.send("service_96euu0a", "template_2ib1ulk", {
+  const params = {
     customer_email: email,
     product_list: productList,
     name: "Boho Blackboard"
-  })
-  .then(() => {
-    statusBox.textContent = "📨 Your download links have been sent!";
-    fireConfetti();
-    localStorage.removeItem("cart");
-    localStorage.removeItem("customer_email");
-  })
-  .catch(() => {
-    statusBox.textContent = "⚠ Email could not be sent. Please contact support.";
-  });
+  };
+
+  emailjs.send("service_96euu0a", "template_2ib1ulk", params)
+    .then(() => {
+      statusBox.textContent = "📨 Your download links have been sent!";
+      localStorage.removeItem("cart");
+      localStorage.removeItem("customer_email");
+    })
+    .catch(() => {
+      statusBox.textContent = "⚠ Email could not be sent. Please contact support.";
+    });
 }
 </script>
-
-</body>
-</html>
