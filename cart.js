@@ -1,128 +1,120 @@
-// =====================================================
-// CART STORAGE
-// =====================================================
-function getCart() {
-  return JSON.parse(localStorage.getItem("cart") || "[]");
+// -----------------------------------------------------------
+// CART SYSTEM FOR BOHO BLACKBOARD
+// -----------------------------------------------------------
+
+// Load existing cart
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+// -----------------------------------------------------------
+// Update Cart Count in Navbar
+// -----------------------------------------------------------
+function updateCartCount() {
+  const countBox = document.getElementById("cart-count");
+  if (countBox) {
+    countBox.textContent = cart.length;
+  }
+}
+updateCartCount();
+
+// -----------------------------------------------------------
+// Update Total (Cart Page)
+// -----------------------------------------------------------
+function updateTotal() {
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const totalBox = document.getElementById("cart-total");
+
+  if (totalBox) {
+    totalBox.textContent = "R" + total;
+  }
 }
 
-function saveCart(cart) {
+// -----------------------------------------------------------
+// Add to Cart
+// -----------------------------------------------------------
+function addToCart(productName, price, icon, code) {
+  cart.push({ productName, price, icon, code });
   localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartCount();
+  alert(productName + " added to cart!");
 }
 
-function setCustomerEmail(email) {
-  localStorage.setItem("customer_email", email);
+// -----------------------------------------------------------
+// Remove Item
+// -----------------------------------------------------------
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartCount();
+  renderCart();
+  updateTotal();
 }
 
-function getCustomerEmail() {
-  return localStorage.getItem("customer_email") || "";
-}
+// -----------------------------------------------------------
+// Render Cart Page (Small Icons, Contained Layout)
+// -----------------------------------------------------------
+function renderCart() {
+  const container = document.getElementById("cart-items");
+  if (!container) return; // safety check
 
-// =====================================================
-// ADD / REMOVE ITEMS
-// =====================================================
-const unavailableCodes = ["BEAR_EN", "BEAR_AF", "BUN_EN", "BUN_AF", "SQR_EN", "SQR_AF", "RNG_EN", "RNG_AF"];
-
-function addToCart(name, price, image = "", code) {
-  if (unavailableCodes.includes(code)) {
-    alert(`${name} is not available yet and cannot be purchased.`);
+  if (cart.length === 0) {
+    container.innerHTML = "<p>Your cart is empty.</p>";
+    updateTotal();
     return;
   }
 
-  const cart = getCart();
-  cart.push({ name, price: Number(price), image, code });
-  saveCart(cart);
-  updateCartCount();
-  alert(`${name} added to your cart!`);
-}
-
-function removeFromCart(index) {
-  const cart = getCart();
-  cart.splice(index, 1);
-  saveCart(cart);
-  updateCartPage();
-  updateCartCount();
-}
-
-// =====================================================
-// CART COUNT
-// =====================================================
-function updateCartCount() {
-  const cart = getCart();
-  const el = document.getElementById("cart-count");
-  if (el) el.textContent = cart.length;
-}
-
-// =====================================================
-// CART PAGE RENDERING
-// =====================================================
-function updateCartPage() {
-  const container = document.getElementById("cart-items");
-  const totalEl = document.getElementById("cart-total");
-  if (!container) return;
-
-  const cart = getCart();
   container.innerHTML = "";
-  let total = 0;
 
   cart.forEach((item, index) => {
-    total += item.price;
+    const box = document.createElement("div");
+    box.className = "cart-item";
 
-    container.innerHTML += `
-      <div class="cart-item">
-        <img src="${item.image}" class="cart-thumb">
-        <div class="cart-info">
-          <h4>${item.name}</h4>
-          <p>R${item.price}</p>
-        </div>
-        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+    box.innerHTML = `
+      <img src="${item.icon}" class="cart-item-img" alt="${item.productName}">
+
+      <div class="cart-info">
+        <strong>${item.productName}</strong><br>
+        R${item.price}
       </div>
+
+      <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
     `;
+
+    container.appendChild(box);
   });
 
-  if (totalEl) totalEl.textContent = "R" + total;
+  updateTotal();
 }
 
-// =====================================================
-// BLOCK CHECKOUT FOR UNAVAILABLE THEMES
-// =====================================================
-function cartContainsUnavailable() {
-  const cart = getCart();
-  return cart.some(item => unavailableCodes.includes(item.code));
-}
+// -----------------------------------------------------------
+// Checkout — Save email + redirect (PayFast)
+// -----------------------------------------------------------
+function checkout() {
+  const emailInput = document.getElementById("customer-email");
+  if (!emailInput) return;
 
-// =====================================================
-// PAYFAST PREPARATION
-// =====================================================
-function prepareCheckout() {
-  const email = document.getElementById("customerEmail").value;
+  const email = emailInput.value.trim();
 
   if (!email) {
-    alert("Please enter your email address.");
-    return false;
+    alert("Please enter your email.");
+    return;
   }
 
-  // block unavailable themes
-  if (cartContainsUnavailable()) {
-    alert("Your cart contains themes that are not yet available. Please remove them to continue.");
-    return false;
+  if (cart.length === 0) {
+    alert("Your cart is empty.");
+    return;
   }
 
-  setCustomerEmail(email);
+  // Save email
+  localStorage.setItem("customer_email", email);
 
-  const cart = getCart();
-  const total = cart.reduce((sum, i) => sum + i.price, 0);
-
-  document.getElementById("pf-amount").value = total.toFixed(2);
-
-  let names = cart.map(i => i.name).join(", ");
-  if (names.length > 100) names = names.substring(0, 97) + "...";
-  document.getElementById("pf-item-name").value = names;
-
-  return true;
+  // Redirect to PayFast
+  window.location.href = "https://www.payfast.co.za/eng/process";
 }
 
-// =====================================================
-document.addEventListener("DOMContentLoaded", () => {
-  updateCartCount();
-  updateCartPage();
-});
+// -----------------------------------------------------------
+// INIT
+// -----------------------------------------------------------
+renderCart();
+updateTotal();

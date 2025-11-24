@@ -438,5 +438,39 @@ footer a:hover {
 .preview-item:hover img {
   transform: scale(1.25);
 }
+/* CART ITEM BOX */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 700px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
 
+/* Product icon */
+.cart-item img {
+  width: 120px;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Product text */
+.cart-info {
+  flex: 1;
+  font-size: 1rem;
+}
+
+/* Remove button */
+.remove-btn {
+  padding: 8px 18px;
+  background: #a7b59f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
 

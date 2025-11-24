@@ -4,8 +4,39 @@
 <head>
   <meta charset="UTF-8">
   <title>Thank You | Boho Blackboard</title>
+
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="BB_favicon.png">
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    .thankyou-box {
+      background: #fffaf5;
+      padding: 2rem;
+      border-radius: 22px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+      max-width: 700px;
+      margin: 2rem auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: #a7b59f;
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #8fa48b;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,16 +46,47 @@
   <div class="swoosh"></div>
 </header>
 
+<nav class="sticky">
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+
+    <li class="dropdown">
+      <a href="resources.html">Resources ▾</a>
+      <ul class="dropdown-content">
+        <li><a href="pdf-products.html">PDF Products</a></li>
+        <li><a href="classroom-themes.html">Classroom Themes</a></li>
+        <li><a href="freebies.html">Freebies</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a href="#">Legal ▾</a>
+      <ul class="dropdown-content">
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="refund.html">Refund Policy</a></li>
+        <li><a href="downloads.html">Digital Delivery</a></li>
+      </ul>
+    </li>
+
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+  </ul>
+</nav>
+
 <section class="sub-banner">
   <img src="thank-you.png" alt="">
 </section>
 
-<main class="content" style="text-align:center;">
-  <h2>Thank You for Your Purchase!</h2>
+<main class="content thankyou-box" style="text-align:center;">
+  <h2>Thank You for Your Purchase! 🎉</h2>
   <p>Your download links are being emailed to you now. 💛</p>
   <p>If you do not receive an email within 2 minutes, please check your spam folder.</p>
 
   <h3 id="status-message" style="margin-top:20px; font-size:1.1rem;"></h3>
+
+  <a href="index.html" class="back-btn">← Back to Shop</a>
 </main>
 
 <footer>
@@ -34,80 +96,79 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
+// Confetti burst
+function fireConfetti() {
+  confetti({
+    particleCount: 90,
+    spread: 70,
+    origin: { y: 0.3 },
+    colors: ['#a7b59f','#d6bfa9','#f3e7dc','#8fa48b']
+  });
+}
+
 // -----------------------------------------------------------
-// EmailJS init
+// EmailJS Init
 // -----------------------------------------------------------
 emailjs.init("_RstzO3AfSZ0UV3y7");
 
-// -----------------------------------------------------------
-// Load data saved before checkout
-// -----------------------------------------------------------
+// Load saved order data
 const cart = JSON.parse(localStorage.getItem("cart") || "[]");
 const email = localStorage.getItem("customer_email") || "";
-
 const statusBox = document.getElementById("status-message");
 
+// Friendly message rather than error
 if (!cart.length || !email) {
-  statusBox.textContent = "⚠ Missing purchase data. Please contact support.";
+  statusBox.textContent = "You are previewing this page. Download links are only sent after a successful checkout.";
 } else {
   sendDownloadEmail();
 }
 
-// -----------------------------------------------------------
-// ZIP links by theme + language
-// -----------------------------------------------------------
+// Download links
 const fileLinks = {
   "DSH_EN": "https://bohoblackboard.github.io/boho/downloads/boho-dachshunds.zip",
   "DSH_AF": "https://bohoblackboard.github.io/boho/downloads/boho-dachshunds-afrikaans.zip",
   "OWL_EN": "https://bohoblackboard.github.io/boho/downloads/boho-owls.zip",
-  "OWL_AF": "https://bohoblackboard.github.io/boho/downloads/boho-owls-afrikaans.zip"
+  "OWL_AF": "https://bohoblackboard.github.io/boho/downloads/boho-owls-afrikaans.zip",
+  "BEAR_EN": "https://bohoblackboard.github.io/boho/downloads/boho-bears.zip",
+  "BEAR_AF": "https://bohoblackboard.github.io/boho/downloads/boho-bears-afrikaans.zip"
 };
 
-// friendly names
 const friendlyNames = {
   "DSH_EN": "Boho Dachshunds – English",
   "DSH_AF": "Boho Worshonde – Afrikaans",
   "OWL_EN": "Boho Owls – English",
-  "OWL_AF": "Boho Uile – Afrikaans"
+  "OWL_AF": "Boho Uile – Afrikaans",
+  "BEAR_EN": "Boho Bears – English",
+  "BEAR_AF": "Boho Bere – Afrikaans"
 };
 
-// -----------------------------------------------------------
-// Build email text body
-// -----------------------------------------------------------
 function buildList() {
   let text = "";
-
   cart.forEach(item => {
-    const link = fileLinks[item.code];
-    const name = friendlyNames[item.code];
-
-    if (link && name) {
-      text += `${name}:\n${link}\n\n`;
+    if (fileLinks[item.code]) {
+      text += `${friendlyNames[item.code]}:\n${fileLinks[item.code]}\n\n`;
     }
   });
-
   return text;
 }
 
-// -----------------------------------------------------------
 function sendDownloadEmail() {
   const productList = buildList();
 
-  const params = {
+  emailjs.send("service_96euu0a", "template_2ib1ulk", {
     customer_email: email,
     product_list: productList,
     name: "Boho Blackboard"
-  };
-
-  emailjs.send("service_96euu0a", "template_2ib1ulk", params)
-    .then(() => {
-      statusBox.textContent = "📨 Your download links have been sent!";
-      localStorage.removeItem("cart");
-      localStorage.removeItem("customer_email");
-    })
-    .catch(() => {
-      statusBox.textContent = "⚠ Email could not be sent. Please contact support.";
-    });
+  })
+  .then(() => {
+    statusBox.textContent = "📨 Your download links have been sent!";
+    fireConfetti();
+    localStorage.removeItem("cart");
+    localStorage.removeItem("customer_email");
+  })
+  .catch(() => {
+    statusBox.textContent = "⚠ Email could not be sent. Please contact support.";
+  });
 }
 </script>
 
