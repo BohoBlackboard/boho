@@ -243,7 +243,7 @@ hr {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  object-fit: fill;
+  object-fit: cover;
   border: 4px solid #d7b9aa;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   margin: 2rem auto;
@@ -382,6 +382,61 @@ footer a:hover {
 
 .freebie-card .resource-btn:hover {
   background: #8fa88e;
+}
+.theme-icon-large {
+  width: 120px;      /* reduce size */
+  margin: 0 auto 1rem;
+  display: block;
+}
+.theme-heading {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.theme-description {
+  text-align: center;
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  color: #6b5647;
+  line-height: 1.6;
+}
+
+.includes-heading {
+  font-size: 1.8rem;
+  margin-top: 1rem;
+}
+.preview-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-items: center;
+}
+
+.preview-item {
+  background: #fff7f0;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+  width: 160px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.preview-item img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.35s ease;
+}
+
+.preview-item:hover img {
+  transform: scale(1.25);
 }
 
 
