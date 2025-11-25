@@ -102,26 +102,25 @@
 emailjs.init("_RstzO3AfSZ0UV3y7");
 
 // ----------------------------------------------
-// Try to load purchase data from URL (?data=...)
+// Load purchase data
 // ----------------------------------------------
 function getPurchaseData() {
   const urlParams = new URLSearchParams(window.location.search);
   const encoded = urlParams.get("data");
 
-  if (encoded) {
-    try {
-      return JSON.parse(decodeURIComponent(encoded));
-    } catch (e) {
-      return null;
-    }
+  if (!encoded) return null;
+
+  try {
+    return JSON.parse(decodeURIComponent(encoded));
+  } catch {
+    return null;
   }
-  return null;
 }
 
 let purchaseData = getPurchaseData();
 
 // ----------------------------------------------
-// Fallback: Local testing (open HTML manually)
+// Fallback for manual testing
 // ----------------------------------------------
 if (!purchaseData) {
   purchaseData = {
@@ -138,7 +137,7 @@ const previewMode = purchaseData.preview || false;
 const statusBox = document.getElementById("status-message");
 
 // ----------------------------------------------
-// ZIP download links
+// VALID CODE-LINK LIST
 // ----------------------------------------------
 const fileLinks = {
   "DSH_EN": "https://bohoblackboard.github.io/boho/downloads/boho-dachshunds.zip",
@@ -146,7 +145,7 @@ const fileLinks = {
   "OWL_EN": "https://bohoblackboard.github.io/boho/downloads/boho-owls.zip",
   "OWL_AF": "https://bohoblackboard.github.io/boho/downloads/boho-owls-afrikaans.zip",
   "BEAR_EN": "https://bohoblackboard.github.io/boho/downloads/boho-bears.zip",
-  "BEAR_AF": "https://bohoblackboard.github.io/boho/downloads/boho-bears-afrikaans.zip"
+  "BEAR_AF": "https://bohoblackboard.github.io/boho/downloads/boho-bears-afrikaans.zip",
 };
 
 // Friendly names
@@ -159,17 +158,18 @@ const friendlyNames = {
   "BEAR_AF": "Boho Bere – Afrikaans"
 };
 
-// Build text list for email
+// ----------------------------------------------
+// Build product_list for EmailJS
+// ----------------------------------------------
 function buildList() {
-  let t = "";
-  cart.forEach(item => {
-    t += `${friendlyNames[item.code]}:\n${fileLinks[item.code]}\n\n`;
-  });
-  return t;
+  return cart.map(item => {
+    if (!item.code) return "";
+    return `${friendlyNames[item.code]}:\n${fileLinks[item.code]}\n`;
+  }).join("\n");
 }
 
 // ----------------------------------------------
-// Send Email (only if real purchase)
+// Send Email if real purchase
 // ----------------------------------------------
 if (previewMode) {
   statusBox.textContent = "You are previewing this page. Download links are only sent after a successful checkout.";
@@ -182,8 +182,7 @@ function sendDownloadEmail() {
 
   const params = {
     customer_email: email,
-    product_list: productList,
-    name: "Boho Blackboard"
+    product_list: productList
   };
 
   emailjs.send("service_96euu0a", "template_2ib1ulk", params)
@@ -191,9 +190,15 @@ function sendDownloadEmail() {
       statusBox.textContent = "📨 Your download links have been sent!";
       localStorage.removeItem("cart");
       localStorage.removeItem("customer_email");
+
+      // Confetti celebration!
+      confetti({ particleCount: 80, spread: 60 });
     })
     .catch(() => {
       statusBox.textContent = "⚠ Email could not be sent. Please contact support.";
     });
 }
 </script>
+
+</body>
+</html>
