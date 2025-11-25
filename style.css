@@ -1,5 +1,5 @@
 /* ---------------------------------------------------
-   GLOBAL STYLES — EXACT ORIGINAL RESTORE
+   GLOBAL STYLES — CLEANED & STABLE
 --------------------------------------------------- */
 body {
   margin: 0;
@@ -9,9 +9,9 @@ body {
   background-size: cover;
   background-attachment: fixed;
   color: #4b3d36;
+  overflow-x: hidden;
 }
 
-/* Headings (Patrick Hand) */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Patrick Hand', cursive;
   color: #4b3d36;
@@ -25,16 +25,16 @@ img {
 }
 
 /* ---------------------------------------------------
-   HEADER — EXACT MATCH
+   HEADER
 --------------------------------------------------- */
 header {
   text-align: center;
   padding: 2rem 1rem 1rem;
   background-color: rgba(214,191,167,0.90);
+  position: relative;
 }
 
 .logo {
-  font-family: 'Patrick Hand', cursive;
   font-size: 3rem;
   margin: 0;
   color: #593f2f;
@@ -49,7 +49,27 @@ header {
 }
 
 /* ---------------------------------------------------
-   NAVIGATION BAR — EXACT RESTORE
+   HAMBURGER MENU
+--------------------------------------------------- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 28px;
+  height: 4px;
+  background-color: #6a5647;
+  border-radius: 4px;
+}
+
+/* ---------------------------------------------------
+   NAVIGATION
 --------------------------------------------------- */
 nav.sticky {
   position: sticky;
@@ -66,6 +86,7 @@ nav.sticky {
   gap: 1.4rem;
   padding: 0;
   margin: 0;
+  transition: max-height 0.3s ease-out;
 }
 
 .nav-links a {
@@ -83,7 +104,7 @@ nav.sticky {
   color: white;
 }
 
-/* Dropdown Menu */
+/* Dropdown */
 .dropdown {
   position: relative;
 }
@@ -109,7 +130,7 @@ nav.sticky {
 }
 
 /* ---------------------------------------------------
-   SUB BANNER — EXACT HEIGHT
+   SUB BANNER
 --------------------------------------------------- */
 .sub-banner img {
   width: 100%;
@@ -117,14 +138,26 @@ nav.sticky {
   object-fit: contain;
 }
 
+/* ---------------------------------------------------
+   CONTENT WRAPPER
+--------------------------------------------------- */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+}
 
+/* ---------------------------------------------------
+   INTRO TEXT
+--------------------------------------------------- */
 .intro {
   text-align: center;
   font-size: 1.15rem;
   color: #6b5647;
 }
 
-/* Soft pastel divider */
 hr {
   border: 0;
   height: 2px;
@@ -135,20 +168,21 @@ hr {
 }
 
 /* ---------------------------------------------------
-   RESOURCE CARDS — PERFECT MATCH
+   RESOURCE CARDS
 --------------------------------------------------- */
-.resource-grid {
+.resource-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 2rem;
-  padding-top: 1rem;
+  margin-top: 2rem;
 }
 
 .resource-card {
   background-color: #f3e7dc;
   border-radius: 18px;
-  width: 300px;
+  max-width: 350px;
+  width: 90%;
   padding: 1.2rem;
   text-align: center;
   box-shadow: 0 4px 14px rgba(0,0,0,0.10);
@@ -162,7 +196,6 @@ hr {
 }
 
 .resource-card h3 {
-  font-family: 'Patrick Hand', cursive;
   font-size: 1.6rem;
 }
 
@@ -181,7 +214,7 @@ hr {
 }
 
 /* ---------------------------------------------------
-   CLASSROOM THEMES — EXACT ORIGINAL GRID
+   THEMES GRID
 --------------------------------------------------- */
 .theme-grid {
   display: grid;
@@ -198,148 +231,14 @@ hr {
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
-.theme-box .header-bar {
-  background-color: #a7b59f;
-  height: 22px;
-  border-radius: 10px 10px 0 0;
-  margin: -1.6rem -1.6rem 1rem;
-}
-
 .theme-box img {
   width: 70px;
   margin: 0 auto 0.4rem;
 }
 
-.theme-box h3 {
-  margin-top: 0.2rem;
-  font-size: 1.6rem;
-}
-
-.theme-box p {
-  font-size: 1rem;
-  color: #5d4d43;
-}
-.theme-box a {
-  text-decoration: none;
-  color: #4b3d36;
-  font-family: 'Patrick Hand', cursive;
-  font-size: 1.7rem;
-  font-weight: normal;
-  cursor: pointer;
-}
-
-.theme-box a:hover {
-  color: #8b6f5a;
-}
-
 /* ---------------------------------------------------
-   ABOUT PAGE — RESTORE PERFECT VERSION
+   FREEBIES GRID
 --------------------------------------------------- */
-.about-me {
-  text-align: center;
-  margin-top: 2rem;
-}
-.about-photo {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #d7b9aa;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  margin: 2rem auto;
-}
-
-/* ---------------------------------------------------
-   BUTTONS — ORIGINAL
---------------------------------------------------- */
-button,
-.add-to-cart-btn,
-.checkout-btn {
-  background-color: #a7b59f;
-  color: white;
-  padding: 0.8rem 1.8rem;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.add-to-cart-btn:hover,
-button:hover {
-  background-color: #8fa48b;
-}
-
-/* ---------------------------------------------------
-   FOOTER — ORIGINAL
---------------------------------------------------- */
-footer {
-  background-color: rgba(214,191,167,0.90);
-  text-align: center;
-  padding: 1.2rem;
-  font-size: 0.9rem;
-  color: #4b3d36;
-}
-
-footer a {
-  color: #4b3d36;
-  text-decoration: none;
-  margin: 0 0.4rem;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* ---------------------------------------------------
-   MOBILE FIXES — ORIGINAL FEEL
---------------------------------------------------- */
-@media (max-width: 768px) {
-  main.content {
-    margin: 1rem;
-    padding: 1.6rem;
-  }
-
-  .resource-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .theme-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* Center the resource blocks */
-.resource-container {
-  display: flex;
-  flex-direction: column;   /* mobile-friendly stacking */
-  align-items: center;      /* centers each block */
-  gap: 2rem;                /* spacing between them */
-  margin-top: 2rem;
-}
-
-/* Optional higher width on desktop */
-.resource-card {
-  max-width: 350px;
-  width: 90%;
-  text-align: center;
-}
-
-/* Desktop layout (3 in a row but still centred) */
-@media (min-width: 900px) {
-  .resource-container {
-    flex-direction: row;
-    justify-content: center;   /* centers the row of cards */
-    gap: 3rem;                 /* more space on desktop */
-  }
-}
-.content {
-  max-width: 1100px;      /* WIDER BOX */
-  margin: 0 auto;         /* CENTER ON PAGE */
-  background: white;
-  padding: 2rem;
-  border-radius: 20px;
-}
-/* Freebies grid layout */
 .freebies-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -347,7 +246,6 @@ footer a:hover {
   margin-top: 2rem;
 }
 
-/* Freebie card styling (matching resource cards) */
 .freebie-card {
   background-color: #f3e7dc;
   padding: 1.6rem;
@@ -356,89 +254,9 @@ footer a:hover {
   box-shadow: 0 4px 14px rgba(0,0,0,0.10);
 }
 
-.freebie-card h3 {
-  font-family: 'Patrick Hand', cursive;
-  font-size: 1.6rem;
-  margin-bottom: 0.6rem;
-  color: #4b3d36;
-}
-
-.freebie-card p {
-  color: #5d4d43;
-  font-size: 1rem;
-  margin-bottom: 1.4rem;
-}
-
-/* Button (same as resource button) */
-.freebie-card .resource-btn {
-  display: inline-block;
-  background: #9fb59e;
-  color: white;
-  padding: 0.7rem 1.4rem;
-  border-radius: 12px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.freebie-card .resource-btn:hover {
-  background: #8fa88e;
-}
-.theme-icon-large {
-  width: 120px;      /* reduce size */
-  margin: 0 auto 1rem;
-  display: block;
-}
-.theme-heading {
-  text-align: center;
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
-}
-
-.theme-description {
-  text-align: center;
-  font-size: 1.25rem;
-  max-width: 800px;
-  margin: 0 auto 1.5rem;
-  color: #6b5647;
-  line-height: 1.6;
-}
-
-.includes-heading {
-  font-size: 1.8rem;
-  margin-top: 1rem;
-}
-.preview-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-  justify-items: center;
-}
-
-.preview-item {
-  background: #fff7f0;
-  padding: 1rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
-  width: 160px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.preview-item img {
-  width: 100%;
-  height: auto;
-  transition: transform 0.35s ease;
-}
-
-.preview-item:hover img {
-  transform: scale(1.25);
-}
-/* CART ITEM BOX */
+/* ---------------------------------------------------
+   CART STYLES
+--------------------------------------------------- */
 .cart-item {
   display: flex;
   align-items: center;
@@ -446,31 +264,73 @@ footer a:hover {
   background: #fff;
   padding: 20px;
   border-radius: 15px;
-  margin: 20px auto;
   max-width: 700px;
+  margin: 20px auto;
   box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 
-/* Product icon */
-.cart-item img {
-  width: 120px;
-  height: auto;
-  border-radius: 12px;
+/* ---------------------------------------------------
+   FOOTER
+--------------------------------------------------- */
+footer {
+  background-color: rgba(214,191,167,0.90);
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.9rem;
 }
 
-/* Product text */
-.cart-info {
-  flex: 1;
-  font-size: 1rem;
+/* ---------------------------------------------------
+   MOBILE FIXES
+--------------------------------------------------- */
+@media (max-width: 768px) {
+
+  header {
+    padding: 1.2rem 0.4rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 0.6rem;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .nav-links.open {
+    max-height: 500px;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background-color: #f3e7dc;
+  }
+
+  nav.sticky a {
+    font-size: 1rem;
+  }
+
+  .theme-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-container {
+    flex-direction: column;
+  }
 }
 
-/* Remove button */
-.remove-btn {
-  padding: 8px 18px;
-  background: #a7b59f;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+/* ---------------------------------------------------
+   DESKTOP WIDTHS
+--------------------------------------------------- */
+@media (min-width: 900px) {
+  .resource-container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+  }
 }
-
