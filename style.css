@@ -484,4 +484,17 @@ footer a:hover {
     margin: 0 auto;
   }
 }
+.hero-banner img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;     /* force image to stay inside screen */
+  overflow: hidden;      /* prevent the artwork sticking out */
+  display: block;
+}
+.hero-banner {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
 
