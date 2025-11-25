@@ -497,4 +497,31 @@ footer a:hover {
   max-width: 100%;
   overflow: hidden;
 }
+/* -----------------------------------------
+   MOBILE NAVIGATION FIX — IMPORTANT!
+----------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Stack the navigation vertically */
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Make each nav item take full width */
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Smaller font to fit mobile width */
+  nav.sticky a {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}
 
