@@ -4,6 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Thank You | Boho Blackboard</title>
+  <header>
+  <h1 class="logo">Boho Blackboard</h1>
+  <div class="swoosh"></div>
+
+  <!-- MOBILE HAMBURGER -->
+  <div class="hamburger" id="hamburger">
+    <div></div><div></div><div></div>
+  </div>
+</header>
+
+<nav class="sticky">
+  <ul class="nav-links" id="nav-links">
+
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+
+    <li class="dropdown">
+      <a class="dropdown-btn">Resources ▾</a>
+      <ul class="dropdown-content">
+        <li><a href="pdf-products.html">PDF Products</a></li>
+        <li><a href="classroom-themes.html">Classroom Themes</a></li>
+        <li><a href="freebies.html">Freebies</a></li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a class="dropdown-btn">Legal ▾</a>
+      <ul class="dropdown-content">
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="refund.html">Refund Policy</a></li>
+        <li><a href="downloads.html">Digital Delivery</a></li>
+      </ul>
+    </li>
+
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+
+  </ul>
+</nav>
 
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="BB_favicon.png">
@@ -177,7 +217,7 @@ if (previewMode) {
   sendDownloadEmail();
 }
 
-function sendDownloadEmail() {
+function sendDownloadEmail() 
   const productList = buildList();
 
   const params = {
@@ -197,7 +237,22 @@ function sendDownloadEmail() {
     .catch(() => {
       statusBox.textContent = "⚠ Email could not be sent. Please contact support.";
     });
-}
+    const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("nav-links");
+const dropdownButtons = document.querySelectorAll(".dropdown-btn");
+
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
+
+/* Dropdowns open on tap on mobile */
+dropdownButtons.forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const parent = btn.parentElement;
+    parent.classList.toggle("open");
+  });
+});
 </script>
 
 </body>
