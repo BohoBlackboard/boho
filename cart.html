@@ -16,7 +16,6 @@
   <h1 class="logo">Boho Blackboard</h1>
   <div class="swoosh"></div>
 
-  <!-- MOBILE HAMBURGER -->
   <div class="hamburger" id="hamburger">
     <div></div><div></div><div></div>
   </div>
@@ -24,7 +23,6 @@
 
 <nav class="sticky">
   <ul class="nav-links" id="nav-links">
-
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
 
@@ -49,7 +47,6 @@
 
     <li><a href="contact.html">Contact</a></li>
     <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
-
   </ul>
 </nav>
 
@@ -70,7 +67,7 @@
   <!-- EMAIL INPUT -->
   <div style="text-align:center; margin-top:20px;">
     <label><strong>Your Email for Download Delivery:</strong></label><br>
-    <input type="email" id="customerEmail"
+    <input type="email" id="customer-email"
            placeholder="you@email.com"
            style="padding:8px; width:300px; margin-top:10px;" required>
   </div>
@@ -88,8 +85,8 @@
     <input type="hidden" name="item_name" value="Boho Blackboard Purchase">
 
     <!-- Return URLs -->
-    <input type="hidden" id="pf-return" name="return_url" value="">
-    <input type="hidden" name="cancel_url" value="https://bohoblackboard.github.io/boho/cancel.html">
+    <input type="hidden" id="pf-return" name="return_url">
+    <input type="hidden" name="cancel_url" value="https://bohoblackboard.github.io/boho/cancelled.html">
 
     <button type="submit" class="checkout-btn">Pay with PayFast</button>
   </form>
@@ -109,13 +106,13 @@ function updateTotals() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  updateCartPage();
+  updateCartPage?.();
   updateCartCount();
   updateTotals();
 });
 
 function prepareCheckout() {
-  const email = document.getElementById("customerEmail").value.trim();
+  const email = document.getElementById("customer-email").value.trim();
   if (!email) {
     alert("Please enter your email before paying.");
     return false;
@@ -126,11 +123,10 @@ function prepareCheckout() {
   let total = cart.reduce((sum, item) => sum + item.price, 0);
   document.getElementById("pf-amount").value = total;
 
-  // ONE SAFE PARAMETER
+  // Build encoded package to send to success page
   const payload = { email: email, cart: cart };
   const encoded = encodeURIComponent(JSON.stringify(payload));
 
-  // RETURN URL
   document.getElementById("pf-return").value =
     "https://bohoblackboard.github.io/boho/success.html?data=" + encoded;
 

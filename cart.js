@@ -88,54 +88,13 @@ function renderCart() {
 }
 
 // -----------------------------------------------------------
-// Checkout — Save email + redirect (PayFast) **FIXED**
+// (IMPORTANT) — Checkout is handled by cart.html using prepareCheckout()
+// So checkout() is intentionally removed to avoid conflicts.
 // -----------------------------------------------------------
-function checkout() {
-  const emailInput = document.getElementById("customer-email");
-  if (!emailInput) return;
-
-  const email = emailInput.value.trim();
-
-  if (!email) {
-    alert("Please enter your email.");
-    return;
-  }
-
-  if (cart.length === 0) {
-    alert("Your cart is empty.");
-    return;
-  }
-
-  // Save email
-  localStorage.setItem("customer_email", email);
-
-  // Calculate total
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
-
-  // Create PayFast form
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action = "https://www.payfast.co.za/eng/process";
-
-  // IMPORTANT: Replace merchant_id & merchant_key with YOUR details
-  form.innerHTML = `
-    <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
-    <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
-
-    <input type="hidden" name="amount" value="${total}">
-    <input type="hidden" name="item_name" value="Boho Blackboard Purchase">
-    <input type="hidden" name="email_address" value="${email}">
-
-    <input type="hidden" name="return_url" value="https://bohoblackboard.github.io/boho/success.html">
-    <input type="hidden" name="cancel_url" value="https://bohoblackboard.github.io/boho/cancelled.html">
-  `;
-
-  document.body.appendChild(form);
-  form.submit();
-}
 
 // -----------------------------------------------------------
 // INIT
 // -----------------------------------------------------------
 renderCart();
 updateTotal();
+updateCartCount();
